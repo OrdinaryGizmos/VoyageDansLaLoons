@@ -29,7 +29,7 @@ static func init(root_node, stop_on_error = true):
 	_ink_runtime.stop_execution_on_exception = stop_on_error
 	_ink_runtime.stop_execution_on_error = stop_on_error
 
-	root_node.add_child(_ink_runtime)
+	root_node.add_child.call_deferred(_ink_runtime)
 
 	return _ink_runtime
 
