@@ -51,8 +51,3 @@ func move_and_slide(motion: Vector2, modify_velocity := true) -> void:
 		else:
 			global_position += motion
 			break
-
-
-# local should be a normalized vector
-#func convert_to_local_gravity(local: Vector2) -> void:
-#	velocity = velocity.rotated(velocity.normalized().angle_to(local))
