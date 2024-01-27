@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://qr5noqn3jkhc"]
+
+[ext_resource type="Script" path="res://addons/inkgd/ink_player.gd" id="1_xg6hc"]
+
+[node name="Main" type="Node2D"]
+
+[node name="InkPlayer" type="Node" parent="."]
+script = ExtResource("1_xg6hc")
