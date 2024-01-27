@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgiubykeoh2rs"]
+
+[ext_resource type="Texture2D" uid="uid://dbdpttlhn1js5" path="res://icon.svg" id="1_0n5j6"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="2_pbvqp"]
+[ext_resource type="Script" path="res://scripts/controller.gd" id="3_eoim5"]
+[ext_resource type="Texture2D" uid="uid://7aihhxb2j2sn" path="res://sprites/moon_indicator.png" id="4_yfrbw"]
+
+[sub_resource type="Gradient" id="Gradient_m60ks"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.707)
+colors = PackedColorArray(0.486275, 0.486275, 0.486275, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mi1mq"]
+gradient = SubResource("Gradient_m60ks")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1xpag"]
+radius = 128.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pupm"]
+size = Vector2(128, 128)
+
+[node name="PlayerTest" type="Node2D"]
+
+[node name="Moon" type="Node2D" parent="."]
+position = Vector2(485, 287)
+
+[node name="Graphics" type="Sprite2D" parent="Moon"]
+clip_children = 2
+texture = SubResource("GradientTexture2D_mi1mq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Moon/Graphics"]
+modulate = Color(1, 0.0196078, 1, 1)
+position = Vector2(0, -41.06)
+scale = Vector2(4.13, 4.13)
+texture = ExtResource("1_0n5j6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Moon"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moon/StaticBody2D"]
+shape = SubResource("CircleShape2D_1xpag")
+
+[node name="Player" type="AnimatableBody2D" parent="."]
+sync_to_physics = false
+script = ExtResource("2_pbvqp")
+
+[node name="Controller" type="Node" parent="Player"]
+script = ExtResource("3_eoim5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_0pupm")
+
+[node name="Graphics" type="Sprite2D" parent="Player"]
+position = Vector2(0, -1)
+texture = ExtResource("1_0n5j6")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Indicator" type="Node2D" parent="Player"]
+
+[node name="Arrow" type="Sprite2D" parent="Player/Indicator"]
+position = Vector2(0, -128)
+texture = ExtResource("4_yfrbw")
+offset = Vector2(3.375, 0)

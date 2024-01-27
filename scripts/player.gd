@@ -1,22 +1,32 @@
 class_name Player
 extends AnimatableBody2D
 
+# controls
+var thrust_input := 0.0
+var turn_input := 0.0
+
 var velocity := Vector2.ZERO
+
+# constants
 const THRUST := 250.0
-const DECEL_BOOST := 20.0
+const DECEL_BOOST := 2.0
 const MAX_SPEED := 500.0
 const TURN := 4.5
+const MOON_FADE_DIST_MIN := 600.0
 
-@onready var test_gravity_source:Node2D = $"../Sprite2D"
-const TEST_GRAVITY := 150.0
+@onready var moon:Node2D = get_parent().find_child("Moon")
+
+# indicator
+@onready var indicator:Node2D = $Indicator
+
+
+func _ready() -> void:
+	indicator.top_level = true
 
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("debug"):
 		velocity = Vector2.ZERO
-	
-	var turn_input := Input.get_axis("left", "right")
-	var thrust_input := Input.get_axis("back", "forward")
 	
 	if not is_zero_approx(thrust_input):
 		var thrust_accel := THRUST
@@ -30,10 +40,13 @@ func _physics_process(delta: float) -> void:
 	
 	rotate(TURN * turn_input * delta)
 	
-	var moon_gravity_direction := global_position.direction_to(test_gravity_source.global_position)
-	velocity += moon_gravity_direction * TEST_GRAVITY * delta
-	
 	move_and_slide(velocity * delta)
+	
+	# the indicator needs to be top level so it can rotate independent of the
+	# player, so the position manually needs to be set as well
+	indicator.global_position = global_position
+	indicator.modulate.a = 1.0 if global_position.distance_to(moon.global_position) >= MOON_FADE_DIST_MIN else 0.0
+	indicator.rotation = deg_to_rad(90.0) + global_position.direction_to(moon.global_position).angle()
 
 
 func move_and_slide(motion: Vector2, modify_velocity := true) -> void:
