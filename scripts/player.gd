@@ -37,8 +37,6 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 	
 	if not is_zero_approx(thrust_input):
-		$Graphics/Boost.show()
-		$Graphics/Drift.hide()
 		var thrust_accel := THRUST
 		if velocity.dot(-global_transform.y) * thrust_input < 0.0:
 			thrust_accel *= DECEL_BOOST
@@ -47,10 +45,7 @@ func _physics_process(delta: float) -> void:
 				-global_transform.y * thrust_input * MAX_SPEED,
 				thrust_accel * delta
 			)
-	else:
-		$Graphics/Boost.hide()
-		$Graphics/Drift.show()
-		
+	
 	rotate(TURN * turn_input * delta)
 	
 	move(velocity * delta)

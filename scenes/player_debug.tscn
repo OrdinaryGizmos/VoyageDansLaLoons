@@ -85,7 +85,10 @@ script = SubResource("GDScript_bf1u3")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Player" parent="." instance=ExtResource("2_yn47x")]
+[node name="Graphics" type="Sprite2D" parent="Moon"]
+texture_filter = 1
+scale = Vector2(3.2, 3.2)
+texture = ExtResource("1_su5gl")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Moon"]
 process_mode = 4

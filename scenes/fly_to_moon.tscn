@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2hc8xngonh8r"]
-
-[ext_resource type="PackedScene" uid="uid://ddabkwn4kj0bl" path="res://scenes/player.tscn" id="1_kkow3"]
-
-[node name="FlyToMoon" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("1_kkow3")]
-position = Vector2(233, 195)
