@@ -13,7 +13,7 @@ var spin := randf_range(-1.0, 1.0)
 
 
 func _physics_process(delta: float) -> void:
-	translate(velocity * delta)
+	move_and_collide(velocity * delta)
 
 
 func _process(delta: float) -> void:
@@ -25,6 +25,7 @@ radius = 40.0
 
 [node name="Asteroid" type="AnimatableBody2D"]
 scale = Vector2(3, 3)
+sync_to_physics = false
 script = SubResource("GDScript_m2j0g")
 
 [node name="Graphics" type="Sprite2D" parent="."]

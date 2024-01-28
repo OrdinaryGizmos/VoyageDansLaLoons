@@ -10,7 +10,7 @@ var velocity := Vector2.ZERO
 # constants
 const THRUST := 250.0
 const DECEL_BOOST := 2.0
-const BOUNCE_SPEED_ABSORB := 1.0 # 0.6
+const BOUNCE_SPEED_ABSORB := 0.3
 const MAX_SPEED := 500.0
 const TURN := 4.5
 const MOON_FADE_DIST_MIN := 600.0
@@ -66,7 +66,11 @@ func _physics_process(delta: float) -> void:
 func move(motion: Vector2) -> void:
 	var collision := move_and_collide(motion, true)
 	if collision:
+		var collider := collision.get_collider()
+		if &"velocity" in collider:
+			collider.velocity = velocity * BOUNCE_SPEED_ABSORB
+		
 		position += collision.get_travel()
-		velocity = velocity.bounce(collision.get_normal()) * BOUNCE_SPEED_ABSORB
+		velocity = velocity.bounce(collision.get_normal())
 	else:
 		global_position += motion
