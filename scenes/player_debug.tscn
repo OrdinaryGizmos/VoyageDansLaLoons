@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://dgiubykeoh2rs"]
 
-[ext_resource type="Texture2D" uid="uid://dbdpttlhn1js5" path="res://icon.svg" id="1_0n5j6"]
 [ext_resource type="Texture2D" uid="uid://cfco6ypwmrc2t" path="res://sprites/laLoons_moon2.png" id="1_su5gl"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_pbvqp"]
 [ext_resource type="Script" path="res://scripts/controller.gd" id="3_eoim5"]
 [ext_resource type="Texture2D" uid="uid://7aihhxb2j2sn" path="res://sprites/moon_indicator.png" id="4_yfrbw"]
+[ext_resource type="Texture2D" uid="uid://lwfrr20ku0qo" path="res://sprites/loonSpriteCrew1.png" id="4_yjqrl"]
 
 [sub_resource type="GDScript" id="GDScript_ev0uo"]
 resource_name = "asteroid_spawner"
@@ -45,7 +45,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 radius = 128.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0pupm"]
-size = Vector2(128, 128)
+size = Vector2(47.52, 157.56)
 
 [sub_resource type="Gradient" id="Gradient_1d8ph"]
 interpolation_mode = 1
@@ -102,7 +102,7 @@ shape = SubResource("CircleShape2D_1xpag")
 shape = SubResource("CircleShape2D_1xpag")
 
 [node name="Player" type="AnimatableBody2D" parent="."]
-position = Vector2(0, -113)
+position = Vector2(0, -134.1)
 sync_to_physics = false
 script = ExtResource("2_pbvqp")
 metadata/_edit_group_ = true
@@ -115,7 +115,9 @@ shape = SubResource("RectangleShape2D_0pupm")
 
 [node name="Graphics" type="Sprite2D" parent="Player"]
 position = Vector2(0, -1)
-texture = ExtResource("1_0n5j6")
+rotation = -0.785398
+scale = Vector2(2, 2)
+texture = ExtResource("4_yjqrl")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
