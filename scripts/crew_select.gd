@@ -2,7 +2,8 @@ extends Node2D
 
 @onready var _ink_player = $InkPlayer
 
-#@export var
+@onready var LAUNCHSCENE = preload("res://scenes/jonny_debug.tscn").instantiate()
+@onready var GLOBALS: Node = get_node("/root/Globals")
 
 
 func _ready():
@@ -17,35 +18,46 @@ func _ready():
 func _story_loaded(successfully: bool):
 	if !successfully:
 		return
-
 	_ink_player.continue_story()
 
 
 func _continued(text, tags):
-	$Header.text = text
-	_ink_player.continue_story()
+	$Header.text += "\n" + text
+	#_ink_player.continue_story()
 
 
 func _prompt_choices(choices: Array):
 	if !choices.is_empty():
-		print(choices)
+		for choice in choices:
+			if choice is String:
+				$Header.text += choice
 
 func _select_choice(choice):
-	_select_choice(choice)
+	_ink_player.choose_choice_index(choice)
+	_ink_player.continue_story()
 
+
+func _proceed():
+	if _ink_player.has_choices:
+		_select_choice(0)
+	else:
+		_ink_player.continue_story()
 
 func _ended():
-	pass
+	$Proceed.hide()
 
-func _continue_story():
-	while _ink_player.can_continue:
-		var text = _ink_player.continue_story()
 
-		# This text is a line of text from the ink story.
-		# Set the text of a Label to this value to display it in your game.
-		$Header.text = text
+func _on_launch_button_pressed():
+	var crew_root = get_node("/root/CrewSelect")
+	crew_root.hide()
+	get_tree().root.add_child(LAUNCHSCENE)
+	GLOBALS.PLAYER = LAUNCHSCENE.find_child("Player")
+	var loon_number = 0
+	for loon in GLOBALS.LOONS:
+		loon_number += 1
+		var loon_script = load("res://scripts/" + loon + ".gd")
+		var loon_node = Node.new()
+		loon_node.set_script(loon_script)
+		loon_node.loon_number = "Loon" + str(loon_number)
+		GLOBALS.PLAYER.add_child(loon_node)
 
-	if _ink_player.has_choices:
-		# 'current_choices' contains a list of the choices, as strings.
-		for choice in _ink_player.current_choices:
-			print(choice)

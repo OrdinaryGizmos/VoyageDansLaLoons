@@ -20,6 +20,8 @@ const UNIT := "meters"
 
 @onready var moon:Node2D = get_parent().find_child("Moon")
 @onready var MOON_RADIUS:float = moon.get_node("StaticBody2D/CollisionShape2D").shape.radius * moon.scale.x
+@onready var GLOBALS: Node = get_node("/root/Globals")
+
 
 # indicator
 @onready var indicator:Node2D = $Indicator
@@ -38,7 +40,6 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_zero_approx(thrust_input):
 		$Graphics/Boost.show()
-		$Graphics/Drift.hide()
 		var thrust_accel := THRUST
 		if velocity.dot(-global_transform.y) * thrust_input < 0.0:
 			thrust_accel *= DECEL_BOOST
@@ -49,7 +50,6 @@ func _physics_process(delta: float) -> void:
 			)
 	else:
 		$Graphics/Boost.hide()
-		$Graphics/Drift.show()
 		
 	rotate(TURN * turn_input * delta)
 	
