@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://ddabkwn4kj0bl"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_6k4w6"]
+[ext_resource type="Script" path="res://scripts/controller.gd" id="2_53gyo"]
+[ext_resource type="Texture2D" uid="uid://7aihhxb2j2sn" path="res://sprites/moon_indicator.png" id="4_chym6"]
+[ext_resource type="Texture2D" uid="uid://bnm4lnf73wqyn" path="res://sprites/loonSpriteCrew1.png" id="4_gvl1m"]
+[ext_resource type="Texture2D" uid="uid://cq3i6ddvkxj7l" path="res://sprites/loonSpriteCrew2.png" id="5_q5h24"]
+[ext_resource type="AudioStream" uid="uid://d28ky6y50864n" path="res://sound/effects/loons.mp3" id="6_nhnnr"]
+[ext_resource type="Script" path="res://scenes/loon_sounds.gd" id="7_rm0vy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pupm"]
+size = Vector2(128, 128)
+
+[node name="Player" type="AnimatableBody2D"]
+sync_to_physics = false
+script = ExtResource("1_6k4w6")
+
+[node name="Controller" type="Node" parent="."]
+script = ExtResource("2_53gyo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0pupm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Indicator" type="Node2D" parent="."]
+
+[node name="Arrow" type="Sprite2D" parent="Indicator"]
+position = Vector2(0, -128)
+texture = ExtResource("4_chym6")
+offset = Vector2(3.375, 0)
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Drift" type="Sprite2D" parent="Graphics"]
+position = Vector2(0, -1)
+texture = ExtResource("4_gvl1m")
+
+[node name="Boost" type="Sprite2D" parent="Graphics"]
+visible = false
+position = Vector2(-22, 18)
+texture = ExtResource("5_q5h24")
+
+[node name="loon_sounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_nhnnr")
+max_polyphony = 48
+bus = &"Loons"
+script = ExtResource("7_rm0vy")
+clip1start = 0.9
+clip1end = 1.8
+clip2start = 4.5
+clip2end = 5.5
+clip3start = 17.0
+clip3end = 18.0
