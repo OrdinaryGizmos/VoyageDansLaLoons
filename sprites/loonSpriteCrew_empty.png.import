@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di2bi0jaxtlrj"
-path="res://.godot/imported/loonSpriteCrew2.png-71213abd93b7d3b95bfbd1a3242a9232.ctex"
+uid="uid://buymoke56mqad"
+path="res://.godot/imported/loonSpriteCrew_empty.png-171e5f1ab4caab9d064ef4a9dcf6b2c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/loonSpriteCrew2.png"
-dest_files=["res://.godot/imported/loonSpriteCrew2.png-71213abd93b7d3b95bfbd1a3242a9232.ctex"]
+source_file="res://sprites/loonSpriteCrew_empty.png"
+dest_files=["res://.godot/imported/loonSpriteCrew_empty.png-171e5f1ab4caab9d064ef4a9dcf6b2c8.ctex"]
 
 [params]
 
