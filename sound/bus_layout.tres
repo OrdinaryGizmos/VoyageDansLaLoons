@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://isfbtce0460y"]
+=======
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://isfbtce0460y"]
+>>>>>>> 2640367 (Add sounds and sprites)
 
 [sub_resource type="AudioEffectChorus" id="AudioEffectChorus_xjnck"]
 resource_name = "Chorus"
@@ -10,6 +14,7 @@ voice/1/pan = -0.85
 voice/2/delay_ms = 14.44
 voice/2/rate_hz = 10.0
 
+<<<<<<< HEAD
 [sub_resource type="AudioEffectEQ10" id="AudioEffectEQ10_m0wa0"]
 resource_name = "EQ10"
 band_db/250_hz = -12.5
@@ -20,11 +25,14 @@ band_db/4000_hz = -26.8
 band_db/8000_hz = -25.1
 band_db/16000_hz = -31.2
 
+=======
+>>>>>>> 2640367 (Add sounds and sprites)
 [resource]
 bus/1/name = &"Loons"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
+<<<<<<< HEAD
 bus/1/volume_db = -5.04538
 bus/1/send = &"Master"
 bus/1/effect/0/effect = SubResource("AudioEffectChorus_xjnck")
@@ -37,3 +45,9 @@ bus/2/volume_db = 2.25149
 bus/2/send = &"Master"
 bus/2/effect/0/effect = SubResource("AudioEffectEQ10_m0wa0")
 bus/2/effect/0/enabled = true
+=======
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectChorus_xjnck")
+bus/1/effect/0/enabled = true
+>>>>>>> 2640367 (Add sounds and sprites)

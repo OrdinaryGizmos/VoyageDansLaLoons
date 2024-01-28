@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://cwwigi6uuv7iu"
-=======
-uid="uid://cq3i6ddvkxj7l"
->>>>>>> 2640367 (Add sounds and sprites)
-path="res://.godot/imported/loonSpriteCrew2.png-71213abd93b7d3b95bfbd1a3242a9232.ctex"
+uid="uid://s5ynljlojb7v"
+path="res://.godot/imported/moonIndicator1.png-fc19dc4949c021a78e887a60038bcc55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/loonSpriteCrew2.png"
-dest_files=["res://.godot/imported/loonSpriteCrew2.png-71213abd93b7d3b95bfbd1a3242a9232.ctex"]
+source_file="res://sprites/moonIndicator1.png"
+dest_files=["res://.godot/imported/moonIndicator1.png-fc19dc4949c021a78e887a60038bcc55.ctex"]
 
 [params]
 

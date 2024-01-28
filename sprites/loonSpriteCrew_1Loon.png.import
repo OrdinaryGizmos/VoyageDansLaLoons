@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://c778f3nusahon"
+=======
+uid="uid://co4cv45j63dqv"
+>>>>>>> 2640367 (Add sounds and sprites)
 path="res://.godot/imported/loonSpriteCrew_1Loon.png-ca4740160b3c551741ab832428a88eb4.ctex"
 metadata={
 "vram_texture": false
