@@ -1,0 +1,15 @@
+[remap]
+
+importer="inkgd.ink.json"
+type="Resource"
+uid="uid://brppfm3vn3cgy"
+path="res://.godot/imported/moon_dialogue.ink.json-aa6bfd985df2af95bbca2f9a559332f1.res"
+
+[deps]
+
+source_file="res://dialogue/moon_dialogue.ink.json"
+dest_files=["res://.godot/imported/moon_dialogue.ink.json-aa6bfd985df2af95bbca2f9a559332f1.res"]
+
+[params]
+
+compress=true

@@ -9,9 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://brubfvney88r7" path="res://sprites/ShipPlaceholder.png" id="5_mynfd"]
 [ext_resource type="Script" path="res://scripts/looon_select_button.gd" id="6_gvgaa"]
 [ext_resource type="Texture2D" uid="uid://buymoke56mqad" path="res://sprites/loonSpriteCrew_empty.png" id="8_srv0n"]
-[ext_resource type="Texture2D" uid="uid://co4cv45j63dqv" path="res://sprites/loonSpriteCrew_1Loon.png" id="9_fkr56"]
-[ext_resource type="Texture2D" uid="uid://bh002jj2nxd88" path="res://sprites/loonSpriteCrew_2Loons.png" id="10_ndinm"]
-[ext_resource type="Texture2D" uid="uid://bnm4lnf73wqyn" path="res://sprites/loonSpriteCrew1.png" id="11_1mjx5"]
+[ext_resource type="Texture2D" uid="uid://c778f3nusahon" path="res://sprites/loonSpriteCrew_1Loon.png" id="9_fkr56"]
+[ext_resource type="Texture2D" uid="uid://dwh4l33188sgp" path="res://sprites/loonSpriteCrew_2Loons.png" id="10_ndinm"]
+[ext_resource type="Texture2D" uid="uid://lwfrr20ku0qo" path="res://sprites/loonSpriteCrew1.png" id="11_1mjx5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7duer"]
 texture = ExtResource("4_psetc")

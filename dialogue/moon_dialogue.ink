@@ -1,8 +1,7 @@
-#Name: Moon Dialogue
-
-- Ow.
-
+Ow.
 What are you doing?
 
-    *   Uhhhhh.....
-    +   [Stare]
+    * [Uhhhhh.....]
+        Why would you do that?
+        *  * We just wanted to see
+    + [Stare]

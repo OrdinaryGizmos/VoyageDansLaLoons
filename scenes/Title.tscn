@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://7qtwvppfs1nf"]
 
-[ext_resource type="Script" path="res://scenes/Title.gd" id="1_eihng"]
+[ext_resource type="Script" path="res://scripts/Title.gd" id="1_eihng"]
 [ext_resource type="Texture2D" uid="uid://rln7ifb1awns" path="res://sprites/laLoons_title.png" id="1_j6s8x"]
 [ext_resource type="AudioStream" uid="uid://coeab45lqk55q" path="res://sound/music/laLunes_titleTrack.wav" id="2_hd2wc"]
 [ext_resource type="AudioStream" uid="uid://btp6hwhgto2ye" path="res://sound/music/laLunes_flightTrack.wav" id="4_tyekq"]
@@ -253,6 +253,5 @@ stream = ExtResource("2_hd2wc")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_tyekq")
 volume_db = -6.813
-bus = &"Music"
 
 [connection signal="pressed" from="LaLoonsTitle/Button" to="." method="_on_button_pressed"]
