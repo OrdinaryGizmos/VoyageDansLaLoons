@@ -20,6 +20,8 @@ const UNIT := "meters"
 
 @onready var moon:Node2D = get_parent().find_child("Moon")
 @onready var MOON_RADIUS:float = moon.get_node("StaticBody2D/CollisionShape2D").shape.radius * moon.scale.x
+@onready var GLOBALS: Node = get_node("/root/Globals")
+
 
 # indicator
 @onready var indicator:Node2D = $Indicator

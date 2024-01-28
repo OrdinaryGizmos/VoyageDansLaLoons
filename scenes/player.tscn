@@ -1,0 +1,116 @@
+[gd_scene load_steps=14 format=3 uid="uid://ddabkwn4kj0bl"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_6k4w6"]
+[ext_resource type="Script" path="res://scripts/controller.gd" id="2_53gyo"]
+[ext_resource type="Texture2D" uid="uid://7aihhxb2j2sn" path="res://sprites/moon_indicator.png" id="4_chym6"]
+[ext_resource type="Texture2D" uid="uid://bnm4lnf73wqyn" path="res://sprites/loonSpriteCrew1.png" id="4_gvl1m"]
+[ext_resource type="Script" path="res://scripts/LoonVisibility.gd" id="4_iyrkb"]
+[ext_resource type="Texture2D" uid="uid://cq3i6ddvkxj7l" path="res://sprites/loonSpriteCrew2.png" id="5_q5h24"]
+[ext_resource type="AudioStream" uid="uid://d28ky6y50864n" path="res://sound/effects/loons.mp3" id="6_nhnnr"]
+[ext_resource type="Texture2D" uid="uid://buymoke56mqad" path="res://sprites/loonSpriteCrew_empty.png" id="6_ssqh7"]
+[ext_resource type="Texture2D" uid="uid://co4cv45j63dqv" path="res://sprites/loonSpriteCrew_1Loon.png" id="7_whym0"]
+[ext_resource type="Texture2D" uid="uid://cn1gumt0aaf8y" path="res://sprites/loneLoon_openMouth.png" id="8_0jy3i"]
+[ext_resource type="Texture2D" uid="uid://bh002jj2nxd88" path="res://sprites/loonSpriteCrew_2Loons.png" id="8_ejplm"]
+[ext_resource type="Script" path="res://scripts/loon_sounds.gd" id="11_tj658"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pupm"]
+size = Vector2(128, 128)
+
+[node name="Player" type="AnimatableBody2D"]
+sync_to_physics = false
+script = ExtResource("1_6k4w6")
+
+[node name="Controller" type="Node" parent="."]
+script = ExtResource("2_53gyo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0pupm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Indicator" type="Node2D" parent="."]
+
+[node name="Arrow" type="Sprite2D" parent="Indicator"]
+position = Vector2(0, -128)
+texture = ExtResource("4_chym6")
+offset = Vector2(3.375, 0)
+
+[node name="Label" type="Label" parent="Indicator/Arrow"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -50.0
+offset_right = 2.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "100px"
+
+[node name="Graphics" type="Node2D" parent="."]
+rotation = -0.821423
+script = ExtResource("4_iyrkb")
+
+[node name="Boost" type="Sprite2D" parent="Graphics"]
+position = Vector2(-38.8531, 37.5158)
+texture = ExtResource("5_q5h24")
+region_enabled = true
+region_rect = Rect2(0, 37, 59, 63)
+
+[node name="ShipEmpty" type="Sprite2D" parent="Graphics"]
+texture = ExtResource("6_ssqh7")
+
+[node name="ShipCrew1" type="Sprite2D" parent="Graphics"]
+visible = false
+texture = ExtResource("7_whym0")
+
+[node name="ShipCrew2" type="Sprite2D" parent="Graphics"]
+visible = false
+texture = ExtResource("8_ejplm")
+
+[node name="ShipCrew3" type="Sprite2D" parent="Graphics"]
+visible = false
+texture = ExtResource("4_gvl1m")
+
+[node name="Loon1" type="Sprite2D" parent="Graphics"]
+visible = false
+position = Vector2(-4.99102, -18.5766)
+rotation = -0.785397
+scale = Vector2(1, 1)
+texture = ExtResource("8_0jy3i")
+region_enabled = true
+region_rect = Rect2(35, 22, 26, 24)
+
+[node name="Loon2" type="Sprite2D" parent="Graphics"]
+visible = false
+position = Vector2(9.38371, 14.4895)
+rotation = -0.823795
+scale = Vector2(1, -1)
+texture = ExtResource("8_0jy3i")
+region_enabled = true
+region_rect = Rect2(35, 22, 26, 24)
+
+[node name="Loon3" type="Sprite2D" parent="Graphics"]
+visible = false
+position = Vector2(-21.0466, -5.00392)
+rotation = -0.785397
+scale = Vector2(-1, 1)
+texture = ExtResource("8_0jy3i")
+region_enabled = true
+region_rect = Rect2(35, 22, 26, 24)
+
+[node name="loon_sounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_nhnnr")
+max_polyphony = 48
+bus = &"Loons"
+script = ExtResource("11_tj658")
+clip1start = 0.9
+clip1end = 1.8
+clip2start = 4.5
+clip2end = 5.5
+clip3start = 17.0
+clip3end = 18.0

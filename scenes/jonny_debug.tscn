@@ -1,0 +1,114 @@
+[gd_scene load_steps=10 format=3 uid="uid://cucyqiaq13k75"]
+
+[ext_resource type="PackedScene" uid="uid://ddabkwn4kj0bl" path="res://scenes/player.tscn" id="1_q3s74"]
+[ext_resource type="PackedScene" uid="uid://bnjqvt5aq37sm" path="res://scenes/moon.tscn" id="2_nuxfi"]
+[ext_resource type="Texture2D" uid="uid://cyjmkc6o5xbir" path="res://sprites/laLoons_flying1.png" id="3_apxgs"]
+
+[sub_resource type="GDScript" id="GDScript_d2lmr"]
+resource_name = "asteroid_spawner"
+script/source = "extends Node
+
+
+@export var spawn_count := 10
+var asteroid := preload(\"res://scenes/asteroid.tscn\")
+
+
+func _ready() -> void:
+	await get_tree().process_frame
+	seed(Time.get_unix_time_from_system())
+	for i in spawn_count:
+		var new_asteroid = asteroid.instantiate()
+		
+		var spawn_side := signf(randf_range(-1.0, 1.0))
+		new_asteroid.global_position.x = spawn_side * 1000.0
+		new_asteroid.global_position.y = randf_range(0.0, -5000.0)
+		
+		new_asteroid.velocity.x = -spawn_side * randf_range(0.0, 100.0)
+		new_asteroid.velocity.y = randf_range(-50.0, 50.0)
+		new_asteroid.scale = Vector2.ONE * randf_range(1.5, 4.0)
+		
+		get_tree().current_scene.add_child(new_asteroid)
+"
+
+[sub_resource type="Gradient" id="Gradient_1d8ph"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_menuj"]
+gradient = SubResource("Gradient_1d8ph")
+width = 20
+height = 20
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qeece"]
+
+[sub_resource type="GDScript" id="GDScript_a0gtf"]
+resource_name = "out_of_bounds"
+script/source = "extends Area2D
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == &\"Player\":
+		print(\"You lost!\")
+		get_tree().quit()
+"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g2x34"]
+
+[node name="JonnyDebug" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_q3s74")]
+
+[node name="Moon" parent="." instance=ExtResource("2_nuxfi")]
+position = Vector2(485, -5000)
+
+[node name="AsteroidSpawner" type="Node" parent="."]
+script = SubResource("GDScript_d2lmr")
+
+[node name="StartPlatform" type="StaticBody2D" parent="."]
+position = Vector2(0, 95.0001)
+scale = Vector2(500, 5)
+
+[node name="Graphics" type="Sprite2D" parent="StartPlatform"]
+texture = SubResource("GradientTexture2D_menuj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartPlatform"]
+shape = SubResource("RectangleShape2D_qeece")
+
+[node name="OutOfBounds" type="Area2D" parent="."]
+script = SubResource("GDScript_a0gtf")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutOfBounds"]
+position = Vector2(-6094, -2551)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_g2x34")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="OutOfBounds"]
+position = Vector2(5647, -2252)
+rotation = -1.57079
+shape = SubResource("WorldBoundaryShape2D_g2x34")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="OutOfBounds"]
+position = Vector2(-47, 1486)
+shape = SubResource("WorldBoundaryShape2D_g2x34")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="OutOfBounds"]
+position = Vector2(5, -7227)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_g2x34")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_apxgs")
+expand_mode = 2
+
+[connection signal="body_entered" from="OutOfBounds" to="OutOfBounds" method="_on_body_entered"]
