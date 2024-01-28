@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dgiubykeoh2rs"]
+[gd_scene load_steps=14 format=3 uid="uid://dgiubykeoh2rs"]
 
 [ext_resource type="Texture2D" uid="uid://cfco6ypwmrc2t" path="res://sprites/laLoons_moon2.png" id="1_su5gl"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_pbvqp"]
@@ -47,13 +47,13 @@ radius = 128.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0pupm"]
 size = Vector2(47.52, 157.56)
 
-[sub_resource type="Gradient" id="Gradient_1d8ph"]
+[sub_resource type="Gradient" id="Gradient_uejce"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dyl72"]
-gradient = SubResource("Gradient_1d8ph")
+gradient = SubResource("Gradient_uejce")
 width = 20
 height = 20
 
