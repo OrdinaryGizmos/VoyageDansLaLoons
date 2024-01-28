@@ -10,22 +10,30 @@ var velocity := Vector2.ZERO
 # constants
 const THRUST := 250.0
 const DECEL_BOOST := 2.0
+const BOUNCE_SPEED_ABSORB := 1.0 # 0.6
 const MAX_SPEED := 500.0
 const TURN := 4.5
 const MOON_FADE_DIST_MIN := 600.0
 
+const PX_TO_RLU_SCALE_FACTOR := 0.0333
+const UNIT := "meters"
+
 @onready var moon:Node2D = get_parent().find_child("Moon")
+@onready var MOON_RADIUS:float = moon.get_node("StaticBody2D/CollisionShape2D").shape.radius * moon.scale.x
 
 # indicator
 @onready var indicator:Node2D = $Indicator
+@onready var arrow:Node2D = $Indicator/Arrow
+@onready var distance_text:Label = $Indicator/Arrow/Label
 
 
 func _ready() -> void:
 	indicator.top_level = true
+	distance_text.top_level = true
 
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("debug"):
+	if Input.is_action_just_pressed("debug") and OS.has_feature("debug"):
 		velocity = Vector2.ZERO
 	
 	if not is_zero_approx(thrust_input):
@@ -40,27 +48,20 @@ func _physics_process(delta: float) -> void:
 	
 	rotate(TURN * turn_input * delta)
 	
-	move_and_slide(velocity * delta)
+	move(velocity * delta)
 	
 	# the indicator needs to be top level so it can rotate independent of the
 	# player, so the position manually needs to be set as well
 	indicator.global_position = global_position
-	indicator.modulate.a = 1.0 if global_position.distance_to(moon.global_position) >= MOON_FADE_DIST_MIN else 0.0
+	distance_text.global_position = arrow.global_position
+	distance_text.text = "%s %s" % [str(snappedf(maxf(global_position.distance_to(moon.global_position) - MOON_RADIUS, 0.0) * PX_TO_RLU_SCALE_FACTOR, 1.00)), UNIT]
 	indicator.rotation = deg_to_rad(90.0) + global_position.direction_to(moon.global_position).angle()
 
 
-func move_and_slide(motion: Vector2, modify_velocity := true) -> void:
-	var slides := 0
-	while motion.length_squared() > 0.0 and slides < 32:
-		var collision := move_and_collide(motion, true)
-		if collision:
-			position += collision.get_travel()
-			motion = collision.get_remainder().slide(collision.get_normal())
-			
-			if modify_velocity:
-				velocity = velocity.slide(collision.get_normal())
-			
-			slides += 1
-		else:
-			global_position += motion
-			break
+func move(motion: Vector2) -> void:
+	var collision := move_and_collide(motion, true)
+	if collision:
+		position += collision.get_travel()
+		velocity = velocity.bounce(collision.get_normal()) * BOUNCE_SPEED_ABSORB
+	else:
+		global_position += motion

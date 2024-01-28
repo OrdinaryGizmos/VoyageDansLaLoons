@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://eemx1nkvb1x7"]
+
+[ext_resource type="Texture2D" uid="uid://carr2jru7yb5e" path="res://sprites/laLoons_moon1.png" id="1_226tk"]
+
+[sub_resource type="GDScript" id="GDScript_m2j0g"]
+resource_name = "asteroid"
+script/source = "extends AnimatableBody2D
+
+
+var velocity := Vector2.RIGHT
+@onready var graphics:Node2D = $Graphics
+var spin := randf_range(-1.0, 1.0)
+
+
+func _physics_process(delta: float) -> void:
+	translate(velocity * delta)
+
+
+func _process(delta: float) -> void:
+	graphics.rotate(spin * delta)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iseme"]
+radius = 40.0
+
+[node name="Asteroid" type="AnimatableBody2D"]
+scale = Vector2(3, 3)
+script = SubResource("GDScript_m2j0g")
+
+[node name="Graphics" type="Sprite2D" parent="."]
+texture = ExtResource("1_226tk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iseme")

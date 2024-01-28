@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgiubykeoh2rs"]
+[gd_scene load_steps=15 format=3 uid="uid://dgiubykeoh2rs"]
 
 [ext_resource type="Texture2D" uid="uid://dbdpttlhn1js5" path="res://icon.svg" id="1_0n5j6"]
 [ext_resource type="Texture2D" uid="uid://cfco6ypwmrc2t" path="res://sprites/laLoons_moon2.png" id="1_su5gl"]
@@ -6,16 +6,84 @@
 [ext_resource type="Script" path="res://scripts/controller.gd" id="3_eoim5"]
 [ext_resource type="Texture2D" uid="uid://7aihhxb2j2sn" path="res://sprites/moon_indicator.png" id="4_yfrbw"]
 
+[sub_resource type="GDScript" id="GDScript_ev0uo"]
+resource_name = "asteroid_spawner"
+script/source = "extends Node
+
+
+@export var spawn_count := 10
+var asteroid := preload(\"res://scenes/asteroid.tscn\")
+
+
+func _ready() -> void:
+	await get_tree().process_frame
+	seed(Time.get_unix_time_from_system())
+	for i in spawn_count:
+		var new_asteroid = asteroid.instantiate()
+		
+		var spawn_side := signf(randf_range(-1.0, 1.0))
+		new_asteroid.global_position.x = spawn_side * 1000.0
+		new_asteroid.global_position.y = randf_range(0.0, -5000.0)
+		
+		new_asteroid.velocity.x = -spawn_side * randf_range(0.0, 100.0)
+		new_asteroid.velocity.y = randf_range(-50.0, 50.0)
+		new_asteroid.scale = Vector2.ONE * randf_range(1.5, 4.0)
+		
+		get_tree().current_scene.add_child(new_asteroid)
+"
+
+[sub_resource type="GDScript" id="GDScript_bf1u3"]
+resource_name = "moon"
+script/source = "extends Node2D
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == &\"Player\":
+		print(\"You won!\")
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_1xpag"]
 radius = 128.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0pupm"]
 size = Vector2(128, 128)
 
+[sub_resource type="Gradient" id="Gradient_1d8ph"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dyl72"]
+gradient = SubResource("Gradient_1d8ph")
+width = 20
+height = 20
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37pe3"]
+
+[sub_resource type="GDScript" id="GDScript_aflh0"]
+resource_name = "out_of_bounds"
+script/source = "extends Area2D
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == &\"Player\":
+		print(\"You lost!\")
+		get_tree().quit()
+"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tunrg"]
+
 [node name="PlayerTest" type="Node2D"]
 
+[node name="AsteroidSpawner" type="Node" parent="."]
+script = SubResource("GDScript_ev0uo")
+spawn_count = 32
+
 [node name="Moon" type="Node2D" parent="."]
-position = Vector2(485, 287)
+position = Vector2(0, -5000)
+scale = Vector2(5, 5)
+script = SubResource("GDScript_bf1u3")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Graphics" type="Sprite2D" parent="Moon"]
 texture_filter = 1
@@ -23,13 +91,21 @@ scale = Vector2(3.2, 3.2)
 texture = ExtResource("1_su5gl")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Moon"]
+process_mode = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Moon/StaticBody2D"]
 shape = SubResource("CircleShape2D_1xpag")
 
+[node name="Area2D" type="Area2D" parent="Moon"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moon/Area2D"]
+shape = SubResource("CircleShape2D_1xpag")
+
 [node name="Player" type="AnimatableBody2D" parent="."]
+position = Vector2(0, -113)
 sync_to_physics = false
 script = ExtResource("2_pbvqp")
+metadata/_edit_group_ = true
 
 [node name="Controller" type="Node" parent="Player"]
 script = ExtResource("3_eoim5")
@@ -49,3 +125,55 @@ texture = ExtResource("1_0n5j6")
 position = Vector2(0, -128)
 texture = ExtResource("4_yfrbw")
 offset = Vector2(3.375, 0)
+
+[node name="Label" type="Label" parent="Player/Indicator/Arrow"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -50.0
+offset_right = 2.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "100px"
+
+[node name="StartPlatform" type="StaticBody2D" parent="."]
+scale = Vector2(500, 5)
+
+[node name="Graphics" type="Sprite2D" parent="StartPlatform"]
+texture = SubResource("GradientTexture2D_dyl72")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartPlatform"]
+shape = SubResource("RectangleShape2D_37pe3")
+
+[node name="OutOfBounds" type="Area2D" parent="."]
+script = SubResource("GDScript_aflh0")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutOfBounds"]
+position = Vector2(-2110, -2295)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_tunrg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="OutOfBounds"]
+position = Vector2(2423, -2252)
+rotation = -1.57079
+shape = SubResource("WorldBoundaryShape2D_tunrg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="OutOfBounds"]
+position = Vector2(-47, 1486)
+shape = SubResource("WorldBoundaryShape2D_tunrg")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="OutOfBounds"]
+position = Vector2(5, -7227)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_tunrg")
+
+[connection signal="body_entered" from="Moon/Area2D" to="Moon" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="OutOfBounds" to="OutOfBounds" method="_on_body_entered"]
