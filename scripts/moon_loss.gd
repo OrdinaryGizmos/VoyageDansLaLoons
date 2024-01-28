@@ -1,6 +1,5 @@
 extends Node2D
 
-
 @export var start_story: bool = false
 @onready var _ink_player = $InkPlayer
 
@@ -17,7 +16,6 @@ func _ready():
 	_ink_player.connect("prompt_choices", _prompt_choices)
 	_ink_player.connect("ended", _ended)
 	_ink_player.create_story()
-	$AnimationPlayer.play("explode")
 
 func _process(delta):
 	if !start_story:
@@ -63,8 +61,8 @@ func _proceed():
 	_ink_player.continue_story()
 
 func _ended():
+	$AnimationPlayer.play("explode")
 	continue_button.hide()
-	_change_scene()
 
 func _change_scene():
 	get_tree().change_scene_to_file("res://scenes/credits.tscn")

@@ -28,7 +28,9 @@ scale = Vector2(3, 3)
 script = SubResource("GDScript_m2j0g")
 
 [node name="Graphics" type="Sprite2D" parent="."]
+self_modulate = Color(0.529412, 0.321569, 0.258824, 1)
 texture = ExtResource("1_226tk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_iseme")

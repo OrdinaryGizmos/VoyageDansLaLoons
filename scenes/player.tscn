@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://scripts/loon_sounds.gd" id="11_tj658"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0pupm"]
-size = Vector2(128, 128)
+size = Vector2(135, 166.5)
 
 [node name="Player" type="AnimatableBody2D"]
 sync_to_physics = false
@@ -24,6 +24,7 @@ script = ExtResource("1_6k4w6")
 script = ExtResource("2_53gyo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.5, 9.25)
 shape = SubResource("RectangleShape2D_0pupm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -66,11 +67,9 @@ region_rect = Rect2(0, 37, 59, 63)
 texture = ExtResource("6_ssqh7")
 
 [node name="ShipCrew1" type="Sprite2D" parent="Graphics"]
-visible = false
 texture = ExtResource("7_whym0")
 
 [node name="ShipCrew2" type="Sprite2D" parent="Graphics"]
-visible = false
 texture = ExtResource("8_ejplm")
 
 [node name="ShipCrew3" type="Sprite2D" parent="Graphics"]

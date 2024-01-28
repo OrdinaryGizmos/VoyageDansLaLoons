@@ -19,7 +19,7 @@ const PX_TO_RLU_SCALE_FACTOR := 0.0333
 const UNIT := "meters"
 
 @onready var moon:Node2D = get_parent().find_child("Moon")
-@onready var MOON_RADIUS:float = moon.get_node("StaticBody2D/CollisionShape2D").shape.radius * moon.scale.x
+@onready var MOON_RADIUS:float = moon.get_node("Area2D/CollisionShape2D").shape.radius * moon.scale.x
 @onready var GLOBALS: Node = get_node("/root/Globals")
 
 
@@ -39,6 +39,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 	
 	if not is_zero_approx(thrust_input):
+		$Graphics/Boost.show()
 		var thrust_accel := THRUST
 		if velocity.dot(-global_transform.y) * thrust_input < 0.0:
 			thrust_accel *= DECEL_BOOST
@@ -47,7 +48,9 @@ func _physics_process(delta: float) -> void:
 				-global_transform.y * thrust_input * MAX_SPEED,
 				thrust_accel * delta
 			)
-	
+	else:
+		$Graphics/Boost.hide()
+		
 	rotate(TURN * turn_input * delta)
 	
 	move(velocity * delta)

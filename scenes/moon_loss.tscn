@@ -1,0 +1,200 @@
+[gd_scene load_steps=16 format=3 uid="uid://c3tt71o0k8pfr"]
+
+[ext_resource type="Script" path="res://scripts/moon_loss.gd" id="1_mhuem"]
+[ext_resource type="Script" path="res://addons/inkgd/ink_player.gd" id="2_xwekb"]
+[ext_resource type="Resource" uid="uid://docdxsh8plyda" path="res://dialogue/moon_loss.ink.json" id="3_dl5rp"]
+[ext_resource type="Texture2D" uid="uid://cyjmkc6o5xbir" path="res://sprites/laLoons_flying1.png" id="4_ar22j"]
+[ext_resource type="Texture2D" uid="uid://cfco6ypwmrc2t" path="res://sprites/laLoons_moon2.png" id="5_r2bi2"]
+[ext_resource type="Script" path="res://scripts/moon_choice_button.gd" id="6_1ftrs"]
+[ext_resource type="Texture2D" uid="uid://d1tb5aeltk8ee" path="res://sprites/laLoons_moon4.png" id="6_q7i7o"]
+[ext_resource type="Texture2D" uid="uid://carr2jru7yb5e" path="res://sprites/laLoons_moon1.png" id="6_sx88m"]
+[ext_resource type="PackedScene" uid="uid://u4apq686pak2" path="res://scenes/explosions.tscn" id="8_lxlnm"]
+[ext_resource type="Texture2D" uid="uid://dyvgjx10pw5u8" path="res://sprites/loonSpriteCrew1.png" id="9_6k1s2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_en5x6"]
+texture = ExtResource("4_ar22j")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fw2h6"]
+bg_color = Color(0.607843, 0.529412, 0.380392, 0.588235)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Animation" id="Animation_277i6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosions:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LoonSpriteCrew1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_wvxrv"]
+resource_name = "explode"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosions:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.85395),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.85742),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_change_scene"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LoonSpriteCrew1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.62811),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6sp0d"]
+_data = {
+"RESET": SubResource("Animation_277i6"),
+"explode": SubResource("Animation_wvxrv")
+}
+
+[node name="MoonDialogue" type="Node2D"]
+script = ExtResource("1_mhuem")
+start_story = true
+
+[node name="InkPlayer" type="Node" parent="."]
+script = ExtResource("2_xwekb")
+ink_file = ExtResource("3_dl5rp")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_en5x6")
+
+[node name="Moon1" type="Sprite2D" parent="Control"]
+position = Vector2(303, 228)
+scale = Vector2(2, 2)
+texture = ExtResource("5_r2bi2")
+
+[node name="Moon2" type="Sprite2D" parent="Control"]
+visible = false
+clip_children = 1
+position = Vector2(297, 305)
+scale = Vector2(2, 2)
+texture = ExtResource("6_sx88m")
+
+[node name="Moon2" type="Sprite2D" parent="Control/Moon2"]
+position = Vector2(3, -38.5)
+texture = ExtResource("6_q7i7o")
+
+[node name="HSplitContainer" type="VSplitContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 400
+
+[node name="Control" type="Control" parent="Control/HSplitContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/HSplitContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 45
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_right = 45
+theme_override_constants/margin_bottom = 45
+
+[node name="VSplitContainer" type="HSplitContainer" parent="Control/HSplitContainer/MarginContainer"]
+layout_mode = 2
+split_offset = 925
+
+[node name="MoonSpeech" type="RichTextLabel" parent="Control/HSplitContainer/MarginContainer/VSplitContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_fw2h6")
+bbcode_enabled = true
+
+[node name="Choices" type="VBoxContainer" parent="Control/HSplitContainer/MarginContainer/VSplitContainer"]
+layout_mode = 2
+
+[node name="ChoiceButton" type="Button" parent="Control/HSplitContainer/MarginContainer/VSplitContainer/Choices"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+text = "Continue"
+script = ExtResource("6_1ftrs")
+
+[node name="LoonSpriteCrew1" type="Sprite2D" parent="."]
+position = Vector2(729, 205)
+rotation = -1.27584
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_6k1s2")
+flip_h = true
+
+[node name="MoonSpeak" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6sp0d")
+}
+
+[node name="Explosions" parent="." instance=ExtResource("8_lxlnm")]
+visible = false
+position = Vector2(736, 173)
+scale = Vector2(0.268027, 0.268027)
+
+[connection signal="pressed" from="Control/HSplitContainer/MarginContainer/VSplitContainer/Choices/ChoiceButton" to="Control/HSplitContainer/MarginContainer/VSplitContainer/Choices/ChoiceButton" method="_on_pressed"]
+[connection signal="timeout" from="MoonSpeak" to="." method="_on_moon_speak_timeout"]

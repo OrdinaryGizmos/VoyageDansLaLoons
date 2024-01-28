@@ -1,0 +1,15 @@
+[remap]
+
+importer="inkgd.ink.json"
+type="Resource"
+uid="uid://docdxsh8plyda"
+path="res://.godot/imported/moon_loss.ink.json-46083b0cc852ec94b5911e7800398409.res"
+
+[deps]
+
+source_file="res://dialogue/moon_loss.ink.json"
+dest_files=["res://.godot/imported/moon_loss.ink.json-46083b0cc852ec94b5911e7800398409.res"]
+
+[params]
+
+compress=true

@@ -1,10 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dgiubykeoh2rs"]
+[gd_scene load_steps=15 format=3 uid="uid://dgiubykeoh2rs"]
 
 [ext_resource type="Texture2D" uid="uid://cfco6ypwmrc2t" path="res://sprites/laLoons_moon2.png" id="1_su5gl"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_pbvqp"]
 [ext_resource type="Script" path="res://scripts/controller.gd" id="3_eoim5"]
 [ext_resource type="Texture2D" uid="uid://7aihhxb2j2sn" path="res://sprites/moon_indicator.png" id="4_yfrbw"]
-[ext_resource type="Texture2D" uid="uid://lwfrr20ku0qo" path="res://sprites/loonSpriteCrew1.png" id="4_yjqrl"]
+[ext_resource type="Texture2D" uid="uid://dyvgjx10pw5u8" path="res://sprites/loonSpriteCrew1.png" id="4_yjqrl"]
 
 [sub_resource type="GDScript" id="GDScript_ev0uo"]
 resource_name = "asteroid_spawner"

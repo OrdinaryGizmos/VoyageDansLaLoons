@@ -1,0 +1,264 @@
+[gd_scene load_steps=13 format=3 uid="uid://u4apq686pak2"]
+
+[ext_resource type="Script" path="res://explosions.gd" id="1_0i80i"]
+[ext_resource type="Texture2D" uid="uid://bdkbuthhq21u7" path="res://sprites/explosion1/explosion10000.png" id="1_5yjni"]
+[ext_resource type="Texture2D" uid="uid://dq8yasubgwm8s" path="res://sprites/explosion1/explosion10001.png" id="2_x14uw"]
+[ext_resource type="Texture2D" uid="uid://xrb2gwti5l24" path="res://sprites/explosion1/explosion10002.png" id="3_uowvi"]
+[ext_resource type="Texture2D" uid="uid://c8rw2ol2idoi8" path="res://sprites/explosion1/explosion10003.png" id="4_61uym"]
+[ext_resource type="Texture2D" uid="uid://dk5amp1xh68xs" path="res://sprites/explosion1/explosion10004.png" id="5_ixeg5"]
+[ext_resource type="Texture2D" uid="uid://pp0rnj52newo" path="res://sprites/explosion1/explosion10005.png" id="6_ew0pp"]
+[ext_resource type="Texture2D" uid="uid://7u7ybv0p0ii0" path="res://sprites/explosion1/explosion10006.png" id="7_utp10"]
+[ext_resource type="Texture2D" uid="uid://di8e4dplpw3qo" path="res://sprites/explosion1/explosion10007.png" id="8_78qs2"]
+[ext_resource type="Texture2D" uid="uid://d33ur4wgm5qbs" path="res://sprites/explosion1/explosion10008.png" id="9_ejcih"]
+[ext_resource type="Texture2D" uid="uid://bko35f3diwqnr" path="res://sprites/explosion1/explosion10009.png" id="10_uow88"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cvfo1"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5yjni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_x14uw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uowvi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_61uym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ixeg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ew0pp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_utp10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_78qs2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ejcih")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_uow88")
+}],
+"loop": true,
+"name": &"explode",
+"speed": 24.0
+}]
+
+[node name="Explosions" type="Node2D"]
+scale = Vector2(0.425, 0.425)
+script = ExtResource("1_0i80i")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(56.4706, 282.353)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+frame_progress = 0.383952
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(138, -58)
+rotation = -1.57939
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.147144
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(-146, 8)
+rotation = -1.07696
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.660353
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(44, 50)
+rotation = -0.680004
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.0430814
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(3, -101)
+rotation = -0.937692
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.263928
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2(124.706, 127.059)
+rotation = 1.903
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D2"]
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+frame_progress = 0.428266
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Node2D2"]
+position = Vector2(138, -58)
+rotation = -1.57939
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.972762
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Node2D2"]
+position = Vector2(-146, 8)
+rotation = -1.07696
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.849203
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Node2D2"]
+position = Vector2(44, 50)
+rotation = -0.680004
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.188586
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Node2D2"]
+position = Vector2(3, -101)
+rotation = -0.937692
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.0419858
+
+[node name="Node2D3" type="Node2D" parent="."]
+position = Vector2(65.8823, 58.8235)
+rotation = -0.579954
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D3"]
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+frame_progress = 0.428266
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Node2D3"]
+position = Vector2(138, -58)
+rotation = -1.57939
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.972762
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Node2D3"]
+position = Vector2(-146, 8)
+rotation = -1.07696
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.849203
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Node2D3"]
+position = Vector2(44, 50)
+rotation = -0.680004
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.188586
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Node2D3"]
+position = Vector2(3, -101)
+rotation = -0.937692
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.0419858
+
+[node name="Node2D4" type="Node2D" parent="."]
+position = Vector2(-115.294, 202.353)
+rotation = -1.71084
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D4"]
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+frame_progress = 0.428266
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Node2D4"]
+position = Vector2(138, -58)
+rotation = -1.57939
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.972762
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Node2D4"]
+position = Vector2(-146, 8)
+rotation = -1.07696
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.849203
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Node2D4"]
+position = Vector2(44, 50)
+rotation = -0.680004
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.188586
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Node2D4"]
+position = Vector2(3, -101)
+rotation = -0.937692
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.0419858
+
+[node name="Node2D5" type="Node2D" parent="."]
+position = Vector2(-120, 42.353)
+rotation = -0.846975
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D5"]
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+frame_progress = 0.428266
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Node2D5"]
+position = Vector2(138, -58)
+rotation = -1.57939
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.972762
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Node2D5"]
+position = Vector2(-146, 8)
+rotation = -1.07696
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.849203
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Node2D5"]
+position = Vector2(44, 50)
+rotation = -0.680004
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.188586
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Node2D5"]
+position = Vector2(3, -101)
+rotation = -0.937692
+sprite_frames = SubResource("SpriteFrames_cvfo1")
+animation = &"explode"
+autoplay = "explode"
+frame_progress = 0.0419858
