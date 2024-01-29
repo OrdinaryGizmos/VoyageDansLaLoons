@@ -59,9 +59,10 @@ func _active(delta):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	PLAYER.thrust_input = 0.0
 	_cooldown -= delta
 	_length -= delta
-	_boredom += delta
+	_boredom += (delta * 3)
 	UICOOLDOWN.value = (cooldown - _cooldown) / cooldown * 100
 	UIBOREDOM.value =  (_boredom / max_boredom) * (_boredom / max_boredom) * 100
 	if _length > 0:

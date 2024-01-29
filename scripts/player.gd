@@ -6,7 +6,7 @@ var thrust_input := 0.0
 var turn_input := 0.0
 
 var velocity := Vector2.ZERO
-
+var done: bool = false
 # constants
 const THRUST := 250.0
 const DECEL_BOOST := 2.0
@@ -35,7 +35,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("debug") and OS.has_feature("debug"):
+	if (Input.is_action_just_pressed("debug") and OS.has_feature("debug")) or done == true:
 		velocity = Vector2.ZERO
 	
 	if not is_zero_approx(thrust_input):

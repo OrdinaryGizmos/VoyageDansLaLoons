@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://u4apq686pak2"]
+[gd_scene load_steps=16 format=3 uid="uid://u4apq686pak2"]
 
 [ext_resource type="Script" path="res://explosions.gd" id="1_0i80i"]
 [ext_resource type="Texture2D" uid="uid://bdkbuthhq21u7" path="res://sprites/explosion1/explosion10000.png" id="1_5yjni"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://di8e4dplpw3qo" path="res://sprites/explosion1/explosion10007.png" id="8_78qs2"]
 [ext_resource type="Texture2D" uid="uid://d33ur4wgm5qbs" path="res://sprites/explosion1/explosion10008.png" id="9_ejcih"]
 [ext_resource type="Texture2D" uid="uid://bko35f3diwqnr" path="res://sprites/explosion1/explosion10009.png" id="10_uow88"]
+[ext_resource type="AudioStream" uid="uid://imct03x2q1d2" path="res://sound/effects/explosionSounds/8-bit-kit-explosion-2.wav" id="12_atdfa"]
+[ext_resource type="AudioStream" uid="uid://ba2xlxgv0vnl7" path="res://sound/effects/explosionSounds/8-bit-kit-explosion-3_G_minor.wav" id="13_1j3x6"]
+[ext_resource type="AudioStream" uid="uid://bu4b8uwc8lx3g" path="res://sound/effects/explosionSounds/8-bit-bomb-explosion.wav" id="14_akg76"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cvfo1"]
 animations = [{
@@ -262,3 +265,18 @@ sprite_frames = SubResource("SpriteFrames_cvfo1")
 animation = &"explode"
 autoplay = "explode"
 frame_progress = 0.0419858
+
+[node name="explode1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_atdfa")
+
+[node name="explode2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_1j3x6")
+
+[node name="explode3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_akg76")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_explode_sound"]

@@ -11,6 +11,20 @@ func _ready():
 			explosion.play()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
+func _explode_sound():
+	if visible:
+		for child in get_children():
+			for explosion: AnimatedSprite2D in child.get_children():
+				if explosion.frame == 0:
+					var pitch = rng.randf_range(.9, 1.1)
+					var expl = rng.randi_range(0, 3)
+					if expl == 1:
+						$explode1.pitch_scale = pitch
+						$explode1.play()
+					if expl == 2:
+						$explode2.pitch_scale = pitch
+						$explode2.play()
+					if expl == 3:
+						$explode3.pitch_scale = pitch
+						$explode3.play()
