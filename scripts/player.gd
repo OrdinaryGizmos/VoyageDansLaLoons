@@ -68,7 +68,7 @@ func move(motion: Vector2) -> void:
 	if collision:
 		var collider := collision.get_collider()
 		if &"velocity" in collider:
-			collider.velocity = velocity * BOUNCE_SPEED_ABSORB
+			collider.velocity = global_position.direction_to(collider.global_position) * velocity.length() * BOUNCE_SPEED_ABSORB
 		
 		position += collision.get_travel()
 		velocity = velocity.bounce(collision.get_normal())
